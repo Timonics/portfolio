@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const TechStackShowcase: React.FC = () => {
   const [isActive, setIsActive] = useState("frontend");
-  const stackPreviewArr = stacks.sort(() => Math.random() - 0.5).slice(0, 4);
+  const stackPreviewArr = stacks.slice(0, 4);
 
   const stackPreviewElements = stackPreviewArr.map((stack) => {
     const Icon = stack.icon;
