@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+/* ----- Design Tokens ----- */
+@theme {
+  /* Cosmic Dark Background */
+  --color-background: #0b0c10;
+  --color-surface: rgba(20, 20, 30, 0.5);
+
+  /* Neon Accents */
+  --color-neon-cyan: #00f0ff;
+  --color-neon-magenta: #ff00ff;
+  --color-neon-lime: #bfff00;
+  --color-neon-violet: #8a2be2;
+  --color-neon-orange: #ff6600;
+
+  /* Text */
+  --color-foreground: #ffffff;
+  --color-muted: rgba(255, 255, 255, 0.65);
+  --color-dim: rgba(255, 255, 255, 0.4);
+
+  /* Borders & Glass */
+  --color-border-green: oklch(72.3% 0.219 149.579);
+  --color-border-light: rgba(255, 255, 255, 0.08);
+  --color-border-glow: rgba(0, 240, 255, 0.4);
+  --color-glass: rgba(255, 255, 255, 0.03);
+
+  /* Shadows (glow effects) */
+  --shadow-cyan-glow: 0 0 30px -5px rgba(0, 240, 255, 0.5);
+  --shadow-magenta-glow: 0 0 30px -5px rgba(255, 0, 255, 0.5);
+  --shadow-lime-glow: 0 0 30px -5px rgba(191, 255, 0, 0.4);
+  --shadow-card:
+    0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 240, 255, 0.1);
+
+  /* Animations */
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-pulse-glow: pulseGlow 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(2deg);
+    }
+  }
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px -5px var(--color-neon-cyan);
+    }
+    50% {
+      box-shadow: 0 0 40px 0px var(--color-neon-cyan);
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}
+
+/* ----- Base Styles ----- */
+* {
+  border-color: var(--color-border-light);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apply fonts directly using the CSS variables from Next.js */
+body {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+button,
+a {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+code,
+pre,
+kbd,
+samp,
+.font-mono {
+  font-family: var(--font-fira-code), monospace;
+}
+
+/* Custom scrollbar (warm theme) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1215; /* deep warm charcoal */
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #f43f5e, #f59e0b);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #f43f5e, #fb923c); /* rose → amber */
+}
+
+/* ----- Custom Utilities ----- */
+.pops {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+.glass {
+  background: rgba(30, 20, 20, 0.4); /* subtle warm base instead of cool grey */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(244, 63, 94, 0.15); /* soft rose border */
+  border-radius: 1.5rem;
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(244, 63, 94, 0.05) inset; /* inner glow for depth */
+}
+
+.glass-neon {
+  background: rgba(20, 20, 30, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 1.5rem;
+  box-shadow: 0 0 30px -10px rgba(0, 240, 255, 0.2);
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #00f0ff 0%, #8a2be2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-magenta {
+  background: linear-gradient(135deg, #ff00ff 0%, #ff6600 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-lime {
+  background: linear-gradient(135deg, #bfff00 0%, #00f0ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.10) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
