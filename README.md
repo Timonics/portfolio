@@ -72,7 +72,7 @@ src/
 
    ```bash
    git clone https://github.com/Timonics/my-portfolio.git
-   cd portfolio
+   cd my-portfolio
    ```
 
 2. **Install dependencies**
