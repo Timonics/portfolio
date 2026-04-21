@@ -43,19 +43,19 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png",
   },
-  authors: [{ name: "Michael Oderinde", url: "https://michaeloderinde.dev" }],
+  authors: [{ name: "Michael Oderinde", url: "https://micksportfolio.vercel.app" }],
   creator: "Michael Oderinde",
-  metadataBase: new URL("https://michaeloderinde.dev"),
+  metadataBase: new URL("https://micksportfolio.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://michaeloderinde.dev",
+    url: "https://micksportfolio.vercel.app",
     siteName: "Michael Oderinde",
     title: "Michael Oderinde – Full‑stack Engineer",
     description: "I build systems that scale with intention.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Michael Oderinde Portfolio",
@@ -66,8 +66,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Michael Oderinde – Full‑stack Engineer",
     description: "I build systems that scale with intention.",
-    creator: "@yourhandle",
-    images: ["/og-image.png"],
+    creator: "@Timonics",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
