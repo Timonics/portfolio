@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -9,12 +9,26 @@ import ProjectSplashCard from "@/components/ui/ProjectSplashCard";
 import { splashProjects } from "@/lib/splashProjectsData";
 
 const ProjectsPreview: React.FC = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1023.5);
+    };
+
+    checkMobile();
+
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  console.log(isMobile);
   return (
     <section className="relative bg-gray-100 rounded-t-[1rem] pt-15 lg:pt-30 pb-50 lg:pb-60 -mt-10 overflow-visible">
       {/* Subtle top shadow for depth */}
       <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-black/5 to-transparent" />
 
-      <Container size="large">
+      <Container>
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
           {/* Left Column – Glassy Panel with Vignette */}
           <motion.div
@@ -61,18 +75,19 @@ const ProjectsPreview: React.FC = () => {
 
           {/* Right Column – Staggered, Overlapping Cards */}
           {/* Right Column – Staggered, Overlapping Cards */}
-          <div className="lg:w-1/2 min-h-[500px] md:min-h-[550px] relative flex items-center justify-center">
+          <div className="lg:w-1/2 w-full min-h-[500px] md:min-h-[550px] relative flex items-center justify-center">
             {splashProjects.map((project, index) => {
               // Spread them out more with different positions
               const positions = [
-                { top: "5%", left: "10%", rotation: -6 },
-                { top: "30%", left: "25%", rotation: 4 },
-                { top: "58%", left: "10%", rotation: -2 },
-                { top: "90%", left: "20%", rotation: 8 },
+                { top: "5%", left: "10%", mobileLeft: "", rotation: -6 },
+                { top: "30%", left: "25%", mobileLeft: "", rotation: 4 },
+                { top: "58%", left: "10%", mobileLeft: "", rotation: -2 },
+                { top: "90%", left: "20%", mobileLeft: "", rotation: 8 },
               ];
               const pos = positions[index] || {
                 top: "50%",
                 left: "50%",
+                mobileLeft: "50%",
                 rotation: 0,
               };
 
@@ -88,7 +103,7 @@ const ProjectsPreview: React.FC = () => {
                   className="shadow-2xl"
                   style={{
                     top: pos.top,
-                    left: pos.left,
+                    left: isMobile ? pos.mobileLeft : pos.left,
                     transform: `translate(-50%, -50%) rotate(${pos.rotation}deg)`,
                     zIndex: index + 1,
                   }}
