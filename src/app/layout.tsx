@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description: "I build systems that scale with intention.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Michael Oderinde Portfolio",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Michael Oderinde – Full‑stack Engineer",
     description: "I build systems that scale with intention.",
     creator: "@Timonics",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
