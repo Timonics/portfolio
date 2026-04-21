@@ -63,7 +63,7 @@ export const PROJECTS: Project[] = [
       "SendGrid",
     ],
     collaboration: "solo",
-    iconName: "Store",
+    iconName: "FaServicestack",
     textColor: "text-[#86198F]",
     gradient: "linear-gradient(145deg, #C026D3b3, #e9eefa)",
     backgroundGradient: "from-fuchsia-500 to-fuchsia-600",

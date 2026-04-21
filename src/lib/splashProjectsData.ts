@@ -1,12 +1,7 @@
-import { MdSell } from "react-icons/md";
-import { RiChatSmile3Fill } from "react-icons/ri";
-import { PiFilmReelFill } from "react-icons/pi";
-import { SiPaypal } from "react-icons/si"; // Example for PayHook
-
 export interface SplashProject {
   id: string;
   title: string;
-  icon: any; // IconType
+  icon: string;
   gradient?: string;
   textColor: string;
   shadowColor: string;
@@ -17,12 +12,12 @@ export interface SplashProject {
 
 export const splashProjects: SplashProject[] = [
   {
-    id: "thriftease",
-    title: "ThriftEase",
-    icon: MdSell,
-    gradient: "linear-gradient(145deg, #4c9f6fb6, #e9eefa)",
-    textColor: "text-[#15883a]",
-    shadowColor: "shadow-green-500/40",
+    id: "chatbin",
+    title: "ChatBin",
+    icon: "Lock",
+    textColor: "text-[#9A3412]",
+    gradient: "linear-gradient(145deg, #EA580Cb3, #e9eefa)",
+    shadowColor: "shadow-orange-400/30",
     rotation: -5,
     translateX: "-4vw",
     translateY: "0px",
@@ -30,7 +25,7 @@ export const splashProjects: SplashProject[] = [
   {
     id: "whispr",
     title: "Whispr",
-    icon: RiChatSmile3Fill,
+    icon: "RiChatSmile3Fill",
     gradient: "linear-gradient(145deg, #7c3aed, #c4b5fd)",
     textColor: "text-[#7741f4]",
     shadowColor: "shadow-[#7741f4]/40",
@@ -41,7 +36,7 @@ export const splashProjects: SplashProject[] = [
   {
     id: "tickettrail",
     title: "TicketTrail",
-    icon: PiFilmReelFill,
+    icon: "PiFilmReelFill",
     gradient: "linear-gradient(145deg, #ef4444, #fca5a5)",
     textColor: "text-red-600",
     shadowColor: "shadow-red-500/40",
@@ -50,12 +45,12 @@ export const splashProjects: SplashProject[] = [
     translateY: "15px",
   },
   {
-    id: "payhook",
-    title: "PayHook",
-    icon: SiPaypal,
-    gradient: "linear-gradient(145deg, #3b82f6, #93c5fd)",
-    textColor: "text-blue-100",
-    shadowColor: "shadow-blue-500/40",
+    id: "velto",
+    title: "Velto",
+    icon: "FaServicestack",
+    textColor: "text-[#86198F]",
+    gradient: "linear-gradient(145deg, #C026D3b3, #e9eefa)",
+    shadowColor: "shadow-fuchsia-500/40",
     rotation: 3,
     translateX: "3vw",
     translateY: "-20px",
