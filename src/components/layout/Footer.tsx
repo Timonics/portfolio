@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import Logo from "@/components/logo";
 import { Mail } from "lucide-react";
-import { BsGithub, BsLinkedin, BsX } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsTwitterX, BsX } from "react-icons/bs";
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/Timonics", icon: BsGithub },
@@ -15,7 +15,7 @@ const socialLinks = [
     href: "https://https://www.linkedin.com/in/oderinde-michael-3a02691b7",
     icon: BsLinkedin,
   },
-  { name: "X (Twitter)", href: "https://twitter.com/Timonics", icon: BsX },
+  { name: "X (Twitter)", href: "https://twitter.com/Timonics", icon: BsTwitterX },
   { name: "Email", href: "mailto:Olubiyioderinde7@gmail.com", icon: Mail },
 ];
 

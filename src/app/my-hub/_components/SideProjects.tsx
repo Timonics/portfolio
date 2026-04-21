@@ -43,6 +43,31 @@ const sideProjects: SideProjects[] = [
     status: "archived",
   },
   {
+    title: "Whispr",
+    description:
+      "A messaging application designed for secure, fast, and user-friendly communication.",
+    tags: [
+      "React",
+      "TailwindCSS",
+      "WebSocket client",
+      "Node.js",
+      "Express",
+      "MongoDB",
+    ],
+    repo: "https://github.com/Timonics/whispr",
+    live: "https://whispr-chat-front.vercel.app/",
+    status: "in-progress",
+  },
+  {
+    title: "Taj - Multi-vendor system",
+    description:
+      "Multi-vendor marketplace for African heritage fashion, Complete e-commerce platform connecting vendors with customers for authentic streetwear and cultural fashion.",
+    tags: ["NestJS", "PostgreSQL", "Redis", "Next.js", "TypeScript", "AWS"],
+    repo: "https://github.com/Timonics/taj-kulture-backend",
+    live: null,
+    status: "in-progress",
+  },
+  {
     title: "Payhook",
     description:
       "A lightweight NestJS application that listens for Stripe webhook events, verifies their signatures, and processes them accordingly.",

@@ -17,17 +17,21 @@ const MyStory: React.FC = () => {
       </h2>
       <div className="glass p-6 md:p-8 space-y-4">
         <p className="text-white/80 leading-relaxed">
-          I started coding by tinkering with HTML and CSS, building small websites for friends.
-          That curiosity evolved into a career building full‑stack applications that solve real problems.
+          My journey into web development started with curiosity and a desire to
+          build things that matter. What began as tinkering with HTML and CSS
+          has evolved into a passion for creating scalable, user-centric
+          applications that solve real-world problems.
         </p>
         <p className="text-white/80 leading-relaxed">
-          Over the years, I've worked with startups and agencies, delivering scalable web apps
-          using React, Node.js, and cloud platforms. I thrive on turning complex requirements into
-          clean, maintainable code.
+          I specialize in full-stack development, with expertise in modern
+          JavaScript frameworks, backend technologies, and database design. I
+          believe in writing clean, maintainable code and creating intuitive
+          user experiences that delight users.
         </p>
         <p className="text-white/80 leading-relaxed">
-          When I'm not coding, you'll find me exploring new tech, contributing to open source,
-          or enjoying a good cup of coffee.
+          When I'm not coding, you'll find me exploring new tech, contributing
+          to open source, or enjoying a good cup of coffee. I'm always excited
+          about the next challenge and the opportunity to learn something new.
         </p>
       </div>
     </motion.section>

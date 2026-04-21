@@ -6,7 +6,7 @@ import { MapPin, Calendar, Briefcase } from "lucide-react";
 
 const infoItems = [
   { icon: MapPin, label: "Location", value: "Lagos, Nigeria" },
-  { icon: Calendar, label: "Experience", value: "5+ Years" },
+  { icon: Calendar, label: "Experience", value: "4+ Years" },
   { icon: Briefcase, label: "Availability", value: "Freelance / Full‑time" },
 ];
 
