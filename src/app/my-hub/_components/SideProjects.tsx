@@ -59,10 +59,10 @@ const sideProjects: SideProjects[] = [
     status: "in-progress",
   },
   {
-    title: "Taj - Multi-vendor system",
+    title: "TAJ Kulture",
     description:
-      "Multi-vendor marketplace for African heritage fashion, Complete e-commerce platform connecting vendors with customers for authentic streetwear and cultural fashion.",
-    tags: ["NestJS", "PostgreSQL", "Redis", "Next.js", "TypeScript", "AWS"],
+      "Streetwear e-commerce backend for Nigerian Gen Z — voice reviews, lookbook, Sabi Score gamification, Paystack webhooks, and an event-driven architecture on Bull queues.",
+    tags: ["NestJS", "Prisma", "Redis", "Bull", "Cloudinary", "Paystack", "TypeScript"],
     repo: "https://github.com/Timonics/taj-kulture-backend",
     live: null,
     status: "in-progress",

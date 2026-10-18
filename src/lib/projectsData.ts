@@ -133,117 +133,6 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    name: "verifyhub",
-    title: "Verify Hub",
-    subtitle:
-      "Enterprise verification portal for Nigerian identity and compliance",
-    desc: "Platform for admins to verify NIN, BVN, CAC, and perform PEP/AML screenings with real-time results, bulk operations, and secure 2FA authentication.",
-    collaboration: "team",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "React Query",
-      "Axios",
-      "Framer Motion",
-      "RSA Encryption",
-      "Admin Dashboard",
-    ],
-    iconName: "MdShield",
-    textColor: "text-[#0F766E]",
-    gradient: "linear-gradient(145deg, #0D9488b3, #e9eefa)",
-    backgroundGradient: "from-teal-500 to-teal-600",
-    shadowClassName: "shadow-teal-500/40",
-    headerColor: "from-teal-500 via-teal-200 to-teal-200",
-    live: "https://verifyhub.ng",
-    repo: "https://github.com/Timonics/verification-portal",
-    caseStudy: {
-      problemStatement: {
-        title:
-          "Build an enterprise-grade verification portal for Nigerian identity and compliance services",
-        description:
-          "The platform needed to provide a modern, admin-facing dashboard for verifying NIN, BVN, CAC, and performing PEP/AML screenings. Key requirements included real‑time verification, secure data handling (encryption, NDPR compliance), comprehensive logging, bulk operations, and a clean, futuristic UI with smooth interactions.",
-      },
-      researchPlanning: {
-        title: "Team Planning – My Role: Frontend Lead",
-        description:
-          "I planned the frontend architecture: chose Next.js 14+ App Router, Tailwind CSS, shadcn/ui, React Query, Axios, Framer Motion. Defined folder structure, coding patterns (types, services, hooks), and authentication flow with HTTP‑only cookies and 2FA. Coordinated with backend teammate to define API contracts.",
-        findings: [
-          "Chose RSA‑OAEP encryption for NIN/BVN transmission using the backend’s public key (implemented on frontend).",
-          "Decided to use Next.js API routes as proxies to avoid CORS and attach auth tokens – backend teammate provided the actual API endpoints.",
-          "Adopted React Query for state management and caching of user data and verification results.",
-          "Created a frontend service layer that calls the backend APIs (via our proxy routes).",
-        ],
-      },
-      engineering: {
-        title: "My Frontend Engineering Contributions",
-        description:
-          "I built all frontend components, pages, state management, encryption utilities, form validation, and integration with the backend APIs (provided by teammate).",
-        architecture: [
-          "Auth UI: login and 2FA (OTP) pages, with paste‑friendly inputs and validation.",
-          "NIN verification frontend: fetch public key, encrypt NIN with WebCrypto, call backend API via proxy, display result card.",
-          "BVN verification: same encryption pattern, separate form and result card.",
-          "CAC business search: form with RC number and company type, consume teammate’s /admin/cac/verify endpoint.",
-          "AML/PEP screening: entity type toggle, fields for individual/organisation, consume /admin/aml/screen endpoint, result card with tabs.",
-          "Bulk NIN retrieval: Excel/CSV upload, XLSX parsing, row‑by‑row API calls, matching logic (first+last+DOB+gender+phone OR first+middle+last+DOB+gender+phone), progress bar, export results, comparison modal.",
-          "Activity logs page: localStorage storage (since backend logs not yet available – placeholder).",
-          "API Calls page (logs) with filtering, search, and mock data (ready for real backend integration).",
-          "Contact page with form that logs submission (EmailJS ready).",
-          "Frontend service layer using Axios to call proxy routes; proxy routes forward requests to teammate’s backend.",
-        ],
-        decisions: [
-          {
-            title:
-              "Use HTTP‑only cookies for auth tokens (frontend only – backend sets the cookie)",
-            description:
-              "I worked with backend teammate to ensure the login and 2FA endpoints set the auth_token cookie, which I then used in all subsequent API calls.",
-          },
-          {
-            title: "Client‑side encryption for NIN and BVN",
-            description:
-              "I implemented the RSA‑OAEP encryption using WebCrypto, fetching the public key from the backend endpoint provided by teammate.",
-          },
-          {
-            title: "Manual tabs for AML result card",
-            description:
-              "I replaced shadcn Tabs with manual state and flex buttons to avoid layout issues and give a smoother UI.",
-          },
-          {
-            title: "Bulk NIN retrieval matching logic",
-            description:
-              "I implemented the two matching conditions directly in the frontend, using the phone‑based NIN lookup API provided by teammate.",
-          },
-        ],
-      },
-      designUX: {
-        title: "My Design Contributions",
-        description:
-          "I designed the entire user interface from scratch, following the provided colour palette (teal primary, light theme, glassmorphism) and typography (Geist for headings, Satoshi for body).",
-        highlights: [
-          "Landing page with animated background blobs, hero section, service cards, and stats.",
-          "Login and OTP pages with gradient backgrounds, spring animations, and paste‑friendly OTP inputs.",
-          "Dashboard with summary cards, quick actions, recent activity, and service popularity (no charts per user request).",
-          "Verification forms (NIN, BVN, CAC) with real‑time validation, consent checkboxes, and security badges.",
-          "Result cards that display API‑returned fields (first name, last name, middle name, DOB, gender, phone, photo, NIN/BVN).",
-          "Bulk upload page with file drop, progress bar, animated table rows, and detailed comparison modal.",
-          "AML result card with manual tabs, side‑by‑side field comparison for PEP/Sanctions, and collapsible articles for Adverse Media.",
-          "Responsive tables for logs and activity, with sorting and pagination.",
-        ],
-      },
-      nextSteps: {
-        title: "Future Enhancements",
-        description:
-          "Replace mock activity logs with backend audit logs, add WebSocket for real‑time bulk processing status, implement user roles and permissions (frontend views), and enhance error handling with retry logic.",
-        items: [
-          "Integrate real audit logs endpoint (backend teammate to provide).",
-          "Add support for BN number in CAC search (once API supports it).",
-          "Implement silent token refresh to avoid frequent logouts (coordinate with backend).",
-          "Enhance bulk upload with concurrent batch processing and rate‑limit handling.",
-        ],
-      },
-    },
-  },
-  {
     name: "chatbin",
     title: "ChatBin",
     subtitle: "Self-destructing secret sharing",
@@ -322,262 +211,222 @@ export const PROJECTS: Project[] = [
       },
     },
   },
+  // },
   {
-    name: "lifedata",
-    title: "LifeData",
-    subtitle: "All‑in‑one insurance onboarding & KYC platform",
-    desc: "Complete employee data management with KYC verification, NIN/BVN encryption, admin/company portals, and group life registration.",
+    name: "charon",
+    title: "Charon",
+    subtitle:
+      "Multi-provider payments orchestration: charges, refunds, escrow, disputes — Stripe, Paystack, Flutterwave",
+    desc: "Backend service that owns the business state of money movement. A single append-only ledger records what happened, when, and why — surviving any single provider being wrong, slow, or unavailable.",
     tags: [
-      "Next.js",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
       "TypeScript",
-      "Tailwind CSS",
-      "React",
-      "RSA Encryption",
-      "KYC",
-      "Admin Dashboard",
+      "Docker",
+      "Stripe",
+      "Paystack",
+      "Flutterwave",
+      "Domain-Driven Design",
     ],
-    collaboration: "team",
-    iconName: "RiHeartPulseFill",
-    textColor: "text-[#1E40AF]",
-    gradient: "linear-gradient(145deg, #2563EBb3, #e9eefa)",
-    backgroundGradient: "from-blue-500 to-blue-600",
-    shadowClassName: "shadow-lg",
-    headerColor: "from-blue-600 to-blue-200",
-    live: "",
-    repo: "",
+    collaboration: "solo",
+    iconName: "SiStripe",
+    textColor: "text-[#0E7490]",
+    gradient: "linear-gradient(145deg, #06B6D4b3, #e9eefa)",
+    backgroundGradient: "from-cyan-500 to-cyan-600",
+    shadowClassName: "shadow-cyan-500/30",
+    headerColor: "from-cyan-500 via-cyan-300 to-cyan-200",
+    live: undefined,
+    repo: "https://github.com/Timonics/charon",
     caseStudy: {
       problemStatement: {
-        title: "Fragmented insurance onboarding and manual KYC",
+        title:
+          "Money needs an audit trail that survives any single provider being wrong, slow, or unavailable",
         description:
-          "Insurance companies needed a unified platform to onboard individuals, corporate clients, and employees under group life policies, with secure verification of NIN/BVN and document management.",
+          "Charges, refunds, escrow holds, releases, and disputes all happen at PSPs (Stripe, Paystack, Flutterwave). The synchronous API response is not truth — the verified webhook is. Without an internal ledger that records every state change with an append-only journal, reconciliation is fragile, refunds can exceed original charges, and webhooks can be replayed or dropped.",
         challenges: [
-          "Implement RSA encryption for sensitive data",
-          "Support multiple registration types (individual, corporate, employee group life)",
-          "Provide separate portals for admins, companies, and employees",
-          "Handle admin verification of NIN and CAC records",
-          "Role‑based permissions for admin users",
+          "Settlement truth must come from verified provider webhooks, never from the synchronous API response",
+          "A webhook event id processed more than once must be a no-op, not a duplicated side effect",
+          "Idempotency keys acquired concurrently must not duplicate a side effect",
+          "A refund can never exceed the charged amount; cumulative refunds are bounded by the original charge",
+          "An escrow's released + refunded must never exceed its held amount, even mid-transaction",
+          "Multi-step persistence must be atomic — intent snapshot + ledger append + idempotency commit together or all roll back",
         ],
       },
       researchPlanning: {
-        title: "System Design",
+        title: "Architecture: Ledger as the Source of Truth",
         description:
-          "Designed a modular architecture with separate onboarding wizard, admin dashboard, and company portal. Used TanStack Query for data fetching and Next.js API routes as proxy to backend.",
+          "I designed the system so the journal is the source of monetary truth. Aggregates' snapshot tables (payment_intents, escrows) are projections that can be rebuilt from the journal — they exist for fast reads, not for correctness. Domain code has no I/O; application code depends on ports, not adapters; infrastructure implements ports. The codebase enforces these three rules structurally so reviewers don't have to enforce them socially.",
         findings: [
-          "RSA-OAEP with SHA-1 is required for NIN/BVN encryption",
-          "Multi‑step forms need client‑side validation and progress tracking",
-          "Admin verification requires comparison of official records with user‑submitted data",
+          "A per-aggregate monotonic sequence + a unique-constraint backstop on the ledger table gives a rock-solid no-duplicate-events guarantee even under concurrent webhooks",
+          "INSERT ... ON CONFLICT DO NOTHING with rowCount-checked winner is the cleanest way to acquire an idempotency key under concurrent callers",
+          "Webhooks should only ever update state via the verified event stream, never from the synchronous provider response — synchronous responses are tentative until the webhook confirms",
+          "Money math must use dinero.js v2 + decimal.js; binary float is unacceptable for any aggregate",
+          "The UnitOfWork pattern wraps every mutating use case so multi-step persistence is atomic; 5 atomicity tests prove the BEGIN → COMMIT or ROLLBACK lifecycle",
         ],
       },
       engineering: {
-        title: "Technical Implementation",
+        title: "DDD-Lite, 4 Contexts, 187+13 Tests",
         description:
-          "Built a Next.js 14 frontend with TypeScript, Tailwind CSS, React Hook Form, and Zod. Implemented RSA encryption using Web Crypto API, dynamic onboarding steps, and admin verification modals.",
+          "Built with NestJS + Prisma + PostgreSQL 16, dinero.js v2 + decimal.js for money math, and a clean domain/application/infrastructure layering. Four bounded contexts: payments, escrow, ledger, and provider-integration. Each context owns its domain types, application use cases, and infrastructure adapters; the ledger is context-independent and consumed by all others.",
         architecture: [
-          "Next.js App Router",
-          "TanStack Query for server state",
-          "Axios with interceptors for auth",
-          "React Hook Form + Zod",
-          "Tailwind CSS with shadcn/ui",
-          "RSA-OAEP encryption (SHA-1)",
-          "Proxy API routes to Laravel backend",
+          "NestJS modular structure with 4 bounded contexts (payments, escrow, ledger, provider-integration)",
+          "Prisma for type-safe PostgreSQL access; node-pg-migrate SQL migrations in /migrations",
+          "Append-only ledger: every state change appends an immutable event with a per-aggregate monotonic sequence and JSON-validated payload",
+          "Idempotency layer: INSERT ... ON CONFLICT DO NOTHING with rowCount-checked winner for the second caller",
+          "Provider-integration adapters per PSP (Stripe / Paystack / Flutterwave) implementing PaymentGatewayPort + ProviderWebhookPort",
+          "UnitOfWork wraps every mutating use case; multi-step persistence commits together or rolls back",
+          "Domain code (pure TS, no decorators) depends on nothing outside its folder; application code depends on ports; infrastructure implements ports",
+          "8 invariants enforced at the type / DB-constraint level, each with explicit tests",
         ],
         decisions: [
           {
-            title: "Client‑side encryption",
+            title: "Domain code is pure TypeScript — no I/O, no decorators",
             description:
-              "Used RSA public key from backend to encrypt NIN/BVN before sending, ensuring plaintext never leaves the browser.",
+              "The domain/ folders import nothing from infrastructure/ or @nestjs/*. Aggregate types are plain TypeScript with no metadata, so domain logic is testable in microseconds and impossible to accidentally couple to the framework.",
           },
           {
-            title: "Modular onboarding steps",
+            title: "Verified webhook is the only settlement source",
             description:
-              "Created a wizard with conditional sections (personal, bank, identity) that adapts to account type (individual, corporate, employee).",
+              "HandlePaymentWebhookUseCase requires event.type === CHARGE_SUCCEEDED AND signature verification upstream. The synchronous provider response is treated as tentative until the webhook confirms. Without this rule, a slow or partially-down PSP would silently produce inconsistent ledger state.",
           },
           {
-            title: "Admin verification modal",
+            title: "Partial releases are first-class on day one",
             description:
-              "Built a unified modal that fetches official NIN records via public API and compares them with user‑submitted data, allowing approve/reject with reason.",
+              "Escrow releases are not all-or-nothing. Each release is a line entity with its own state, and `released + refunded ≤ held` is an invariant checked on every write. This avoids the classic escrow implementation where partial payouts require a full schema redesign later.",
           },
           {
-            title: "Role‑based UI",
+            title: "Two money libraries, not one",
             description:
-              "Implemented permission checks using React Query and custom hooks to conditionally render admin tools based on user roles.",
+              "dinero.js v2 for the value-object layer (typed currency, immutability), decimal.js for the wire format. dinero.js gives correctness; decimal.js gives a stable, JSON-serialisable representation. Mixing them at the boundary avoids both rounding bugs and serialisation loss.",
+          },
+        ],
+      },
+      designUX: undefined,
+      nextSteps: {
+        title: "Roadmap to Production-Ready",
+        description:
+          "The roadmap below is tracked in the project's README. Domain + application layers are built and unit-tested (187/187). Postgres infrastructure is integration-tested against a real Postgres 16 (13/13). HTTP/Nest wiring + outbound payment gateway adapters are the next increments.",
+        items: [
+          "Outbound payment gateway adapters: Paystack first, then Flutterwave, then Stripe. Each adapter implements PaymentGatewayPort and is integrated into InitiatePaymentUseCase.",
+          "HTTP / Nest wiring: main.ts + AppModule + webhook controllers + command endpoints + raw-body middleware + webhook inbox writer. Adds the Dockerfile so the CI scan pipeline can be extended with Trivy.",
+          "CI/CD pipeline on every push: lint + build + unit + integration. The branch ci/add-github-actions-pipeline is staged on top of main with this work already done.",
+          "Once the HTTP layer lands, runnable end-to-end against sandbox provider credentials for a real-money smoke test.",
+        ],
+      },
+    },
+  },
+
+  {
+    name: "cerebrus",
+    title: "Cerebrus",
+    subtitle:
+      "Shared authentication infrastructure for cross-service identity and access",
+    desc: "Internal authentication service that the rest of the product surface builds on. Single source of truth for users, sessions, OAuth flows, and (later) API keys for service-to-service auth.",
+    tags: [
+      "NestJS",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "OAuth 2.0",
+      "JWT",
+      "OIDC",
+    ],
+    collaboration: "solo",
+    iconName: "FaShieldHalved",
+    textColor: "text-[#1E3A8A]",
+    gradient: "linear-gradient(145deg, #1D4ED8b3, #e9eefa)",
+    backgroundGradient: "from-blue-700 to-blue-800",
+    shadowClassName: "shadow-blue-700/30",
+    headerColor: "from-blue-700 via-blue-400 to-blue-200",
+    live: undefined,
+    repo: "https://github.com/Timonics/cerebrus",
+    caseStudy: {
+      problemStatement: {
+        title:
+          "Each product reinventing auth creates per-app drift and makes cross-product features (SSO, unified profiles, audit trails) impossible",
+        description:
+          "Verify Hub, LifeData, and TAJ Kulture each implemented their own auth flow. Login UX drifted, password policies diverged, MFA coverage was uneven, and audit trails were inconsistent. A central auth service is the only way to fix this without rewriting every product.",
+        challenges: [
+          "Existing products have hardcoded session assumptions that need to migrate without downtime",
+          "OAuth 2.0 + OIDC for service-to-service flows without forcing every consumer to implement the spec",
+          "Session storage that survives Redis restarts without forcing users to re-login on every deploy",
+          "Audit trail that captures every auth event with enough context for compliance review",
+          "Future API-key issuance for service-to-service auth (cron jobs, batch processors) without bleeding the user-token code",
+        ],
+      },
+      researchPlanning: {
+        title: "Scope: Boring, Predictable, Boring",
+        description:
+          "Cerebrus is intentionally a small, boring auth service. No novel cryptography, no fancy zero-trust model, no web3 nonsense. Standard OAuth 2.0 + OIDC, standard JWT with short TTLs, standard Redis-backed sessions, standard Postgres for user records and audit events. The value is in the consistency, not the cleverness.",
+        findings: [
+          "Reuse proven libraries (openid-client, jose, passport) instead of hand-rolling OAuth flows",
+          "Short-lived access tokens (15min) + long-lived refresh tokens (30d) + Redis session store gives both security and operational simplicity",
+          "Audit events are first-class — every login, logout, MFA challenge, password reset, and token refresh appends an event row",
+          "Tenant scoping (org_id) is added to users + tokens from day one even though no current consumer needs it; the cost is one column and the benefit is that multi-tenant onboarding becomes a config change instead of a refactor",
+          "Service-to-service auth (API keys) is a separate primitive from user auth — keep the token formats and storage distinct so a leaked API key never yields a user session",
+        ],
+      },
+      engineering: {
+        title: "Planned: NestJS + Prisma + Redis, OAuth/OIDC, JWT",
+        description:
+          "The codebase is being prepared. The reference implementation is NestJS with Prisma for user/audit records, Redis for session storage and rate-limit counters, openid-client for the OAuth dance, jose for JWT signing, and helmet-style security headers on the auth endpoints. Endpoints: /oauth/authorize, /oauth/token, /oauth/introspect, /oauth/revoke, /users, /sessions, /audit.",
+        architecture: [
+          "NestJS application with three modules: Identity (users + credentials), Sessions (Redis-backed JWT lifecycle), Audit (append-only event log)",
+          "Prisma models: User, Credential, MfaFactor, Session, RefreshToken, OAuthClient, ApiKey, AuditEvent",
+          "Redis: short-lived access-token nonce store + refresh-token rotation + per-IP rate limit counters",
+          "OAuth 2.0 / OIDC endpoints: /oauth/authorize, /oauth/token, /oauth/introspect, /oauth/revoke. PKCE required for public clients.",
+          "JWT access tokens (15min TTL, RS256), opaque refresh tokens (30d, rotation on use), session cookies (HttpOnly + SameSite=Strict) for browser clients",
+          "Audit log: every login, logout, MFA challenge, password reset, token refresh appends an AuditEvent. Queryable by user_id + time range + event_type.",
+          "MFA: TOTP (RFC 6238) + WebAuthn (passkeys) as the second factor. SMS fallback deprecated.",
+          "API keys (service-to-service auth): opaque keys with a last-4 prefix shown at creation; the full key is shown once and stored as a bcrypt hash. Revocable.",
+        ],
+        decisions: [
+          {
+            title: "Boring tech, proven libraries",
+            description:
+              "openid-client for the OAuth flow, jose for JWT, passport for any pre-built strategies. No novel crypto. The boring choice is the right choice for auth.",
+          },
+          {
+            title: "Tenant column on day one",
+            description:
+              "Every User, Session, and ApiKey gets a tenant_id even though current consumers are single-tenant. The column costs nothing; the refactor later would cost weeks.",
+          },
+          {
+            title: "API keys are separate from user tokens",
+            description:
+              "A leaked API key must never yield a user session. Keep the two primitives distinct at the type level, the storage level, and the validation path. Bearer tokens get one verification path; API keys get another.",
+          },
+          {
+            title: "Audit log is append-only",
+            description:
+              "Every auth event is a row. Compliance reviews happen on this table. Updates and deletes are forbidden at the application layer; the migration grants no UPDATE/DELETE permissions on audit_events to the application's database role.",
           },
         ],
       },
       designUX: {
-        title: "User Experience Design",
+        title: "Operator + End-User Surfaces",
         description:
-          "Designed a responsive, glassmorphism‑inspired UI with dark/light themes, progress indicators, and side‑by‑side comparison in verification modals.",
+          "Two surfaces ship together: an end-user login + consent UI (OIDC standard, minimal), and an internal admin / audit-explorer UI for the security team to review events.",
         highlights: [
-          "Multi‑step onboarding wizard with collapsible sections and real‑time validation",
-          "Admin dashboard with KPI cards, charts, and verification tabs (NIN, documents, companies)",
-          "Company portal with employee management, invitation table, and pending invitation cards",
-          "Verification modal that displays official records vs. user input with match status badges",
+          "Login page: email + password, then TOTP if MFA is enrolled. Standard OIDC redirect, no custom branding on the auth surface itself.",
+          "Consent screen: lists the requested scopes, expires after 15 minutes if not approved.",
+          "Account page: change password, enroll/remove MFA factors, list active sessions with device + IP, revoke any session.",
+          "Admin audit explorer: filter by user, event type, time range; export to CSV; link to the user's session timeline.",
         ],
       },
       nextSteps: {
-        title: "Future Enhancements",
+        title: "Build Sequence",
         description:
-          "Planned improvements include CAC verification, AML/PEP screening, bulk import/export, and real‑time notifications.",
+          "Repo is being prepared. The build sequence below follows the spec's Phase 1 — organize, then Phase 2 — validate, then Phase 3 — operate, then Phase 4 — present.",
         items: [
-          "Integrate CAC verification API",
-          "Add AML/PEP screening for individuals and directors",
-          "Enhance bulk CSV import with validation and preview",
-          "Implement WebSocket notifications for admin actions",
+          "Phase 1: Implement Identity + Sessions modules + Postgres + Redis adapters + audit log writes. Land the OAuth /token endpoint behind a feature flag.",
+          "Phase 2: Migrate one consumer (Verify Hub) to Cerebrus. Validate the OAuth dance end-to-end with sandbox data. Capture migration friction into a runbook.",
+          "Phase 3: Add MFA (TOTP, then WebAuthn passkeys). Add API-key issuance for service-to-service auth. Add the admin audit explorer.",
+          "Phase 4: Migrate LifeData + TAJ Kulture. Once all three consumers are on Cerebrus, retire their per-app auth code. The auth surface is then consistent across the product.",
         ],
       },
     },
   },
-  // {
-  //   name: "taj-kulture",
-  //   title: "Taj Kulture",
-  //   subtitle: "Multi-vendor marketplace for African heritage fashion",
-  //   desc: "Complete e-commerce platform connecting vendors with customers for authentic streetwear and cultural fashion.",
-  //   tags: ["NestJS", "PostgreSQL", "Redis", "Next.js", "TypeScript", "AWS"],
-  //   collaboration: "solo",
-  //   textColor: "text-[#92400E]",
-  //   gradient: "linear-gradient(145deg, #D97706b3, #e9eefa)",
-  //   backgroundGradient: "from-amber-500 to-amber-600",
-  //   shadowClassName: "shadow-lg",
-  //   headerColor: "from-amber-500 via-amber-300 to-amber-300",
-  //   iconName: "ShoppingBag",
-  //   live: "",
-  //   repo: "https://github.com/Timonics/taj-kulture-backend",
-  //   caseStudy: {
-  //     problemStatement: {
-  //       title: "Fragmented African Fashion Market",
-  //       description:
-  //         "Independent vendors lacked a centralized, secure platform to reach customers, manage inventory, and process payments efficiently.",
-  //       challenges: [
-  //         "Multi-vendor support with role-based access",
-  //         "Secure payment processing with webhooks",
-  //         "Real-time inventory and order management",
-  //         "Scalable architecture for growing user base",
-  //       ],
-  //     },
-  //     engineering: {
-  //       title: "Event-Driven Monolith with Robust Infrastructure",
-  //       description:
-  //         "Built a modular NestJS backend with PostgreSQL, Redis caching, and Bull queues to handle asynchronous tasks like email notifications and analytics.",
-  //       architecture: [
-  //         "NestJS monolith with domain modules (Auth, Vendors, Products, Orders, Payments)",
-  //         "Prisma ORM with PostgreSQL for data persistence",
-  //         "Redis for caching and BullMQ for background jobs",
-  //         "EventBus for decoupled event handling (email, notifications, analytics)",
-  //         "AWS S3 for file uploads and CDN",
-  //       ],
-  //       decisions: [
-  //         {
-  //           title: "HttpOnly Cookies for Auth",
-  //           description:
-  //             "Stored JWT tokens in secure, HttpOnly cookies to prevent XSS attacks and enable refresh token rotation.",
-  //         },
-  //         {
-  //           title: "Domain-Driven Exceptions",
-  //           description:
-  //             "Implemented custom exception hierarchy with error codes and global filter for consistent API error responses.",
-  //         },
-  //         {
-  //           title: "Correlation ID Logging",
-  //           description:
-  //             "Used AsyncLocalStorage to propagate correlation IDs across async operations, enabling request tracing in Winston logs.",
-  //         },
-  //       ],
-  //     },
-  //     designUX: {
-  //       title: "Vendor-Focused Onboarding",
-  //       description:
-  //         "Designed a seamless application and approval flow, with vendor dashboards for product management and sales analytics.",
-  //       highlights: [
-  //         "Vendor application with business details and cultural heritage fields",
-  //         "Admin review queue for approval/rejection",
-  //         "Real-time follower and sales notifications",
-  //       ],
-  //     },
-  //     nextSteps: {
-  //       title: "Future Enhancements",
-  //       description:
-  //         "Planned features to expand the platform's reach and reliability.",
-  //       items: [
-  //         "Real-time chat between vendors and customers",
-  //         "Advanced recommendation engine using product view analytics",
-  //         "Mobile app with push notifications",
-  //         "International shipping and multi-currency support",
-  //       ],
-  //     },
-  //   },
-  // },
-  {
-    name: "taj-kulture",
-    title: "TAJ Kulture",
-    subtitle: "Streetwear e‑commerce for Nigerian Gen Z",
-    desc: "NestJS backend with voice reviews, lookbook, Sabi Score gamification, and event‑driven architecture.",
-    tags: ["NestJS", "Prisma", "Redis", "Bull", "Cloudinary", "Paystack"],
-    collaboration: "solo",
-    textColor: "text-[#92400E]",
-    gradient: "linear-gradient(145deg, #D97706b3, #e9eefa)",
-    backgroundGradient: "from-amber-500 to-amber-600",
-    shadowClassName: "shadow-lg",
-    headerColor: "from-amber-500 via-amber-300 to-amber-300",
-    iconName: "ShoppingBag",
-    repo: "https://github.com/Timonics/taj-kulture",
-    caseStudy: {
-      problemStatement: {
-        title:
-          "Building a scalable, community-driven streetwear platform for Nigerian Gen Z",
-        description:
-          "TAJ Kulture required a backend that handles e-commerce, user-generated content (lookbook, voice reviews), gamification (Sabi Score), and real-time processing of events like payments and inventory.",
-        challenges: [
-          "Event-driven architecture for async tasks",
-          "Managing limited drops and geo-specific products",
-          "Integrating Paystack webhooks with signature verification",
-          "Handling voice review uploads via Cloudinary",
-          "Implementing referral system and loyalty points",
-        ],
-      },
-      engineering: {
-        title: "DDD‑Lite + Event‑Driven Architecture with Queues",
-        description:
-          "Built with NestJS, Prisma (PostgreSQL), Redis for caching/OTP, Bull for job queues, and Cloudinary for file storage. Domain events decouple side effects; Bull workers handle email, notifications, inventory deduction, and Sabi score updates.",
-        architecture: [
-          "NestJS modular structure (DDD lite)",
-          "Prisma for type-safe database access with full indexing",
-          "Redis for OTP storage and cart persistence",
-          "Bull queues with retry logic for async processing",
-          "Cloudinary for image/audio uploads",
-          "Paystack webhook with HMAC verification",
-        ],
-        decisions: [
-          {
-            title: "DDD‑Lite over full DDD",
-            description:
-              "Simplified domain-driven design to keep code organized without over‑engineering aggregates.",
-          },
-          {
-            title: "Event Emitter + Bull queues",
-            description:
-              "Immediate event emission for sync handlers, then Bull for heavy async jobs (email, inventory).",
-          },
-          {
-            title: "Two‑step file upload",
-            description:
-              "Frontend uploads to Cloudinary directly or via backend endpoint, then stores URL – avoids multipart parsing in business logic.",
-          },
-        ],
-      },
-      nextSteps: {
-        title: "Future Enhancements",
-        description:
-          "Post‑MVP features to differentiate TAJ Kulture in the Nigerian market.",
-        items: [
-          "Geo‑drops (city‑specific products)",
-          "Community voting for next drop",
-          "Promo codes and discounts",
-          "Real‑time WebSocket notifications",
-          "Shipping integration (GIG Logistics)",
-          "Admin analytics dashboard",
-        ],
-      },
-    },
-  },
+
 ];
