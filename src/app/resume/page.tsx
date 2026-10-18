@@ -20,20 +20,20 @@ export default function ResumePage() {
   return (
     <Container size="small" className="py-12 md:py-20">
       <div className="text-center space-y-6">
-        <h1 className="font-display text-4xl md:text-5xl font-bold text-white">
+        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white text-balance">
           Resume
         </h1>
-        <p className="text-white/70 max-w-xl mx-auto">
+        <p className="text-white/70 max-w-xl mx-auto text-sm sm:text-base">
           Download or view my full resume. Last updated: April 2026.
         </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Button asChild size="lg" variant="default">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          <Button asChild size="lg" variant="default" className="min-h-[44px]">
             <a href="/resume.pdf" download="Michael_Oderinde_Resume.pdf">
               <Download className="mr-2 h-4 w-4" />
               Download PDF
             </a>
           </Button>
-          <Button asChild size="lg" variant="outline">
+          <Button asChild size="lg" variant="outline" className="min-h-[44px]">
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4" />
               Open PDF
@@ -41,12 +41,14 @@ export default function ResumePage() {
           </Button>
         </div>
 
-        {/* Optional: Embedded PDF viewer */}
+        {/* PDF preview: aspect-ratio so it scales to the viewport on mobile,
+            capped at 80vh on desktop. */}
         <div className="mt-8 glass border border-white/10 rounded-2xl overflow-hidden">
           <iframe
             src="/resume.pdf#view=FitH"
-            className="w-full h-[800px]"
+            className="w-full aspect-[8.5/11] max-h-[80vh]"
             title="Resume Preview"
+            loading="lazy"
           />
         </div>
       </div>

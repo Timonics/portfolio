@@ -45,17 +45,20 @@ export default function ProjectsPage() {
           className="space-y-5 mb-12"
         >
           <div className="flex flex-wrap items-center gap-4">
-            <h1 className="text-5xl md:text-7xl font-bold text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white text-balance">
               My{" "}
               <span className="bg-linear-to-r from-rose-400 via-amber-400 to-lime-400 bg-clip-text text-transparent">
                 Projects
               </span>
             </h1>
           </div>
-          <p className="text-white/70 text-lg lg:w-[70%]">
+          <p className="text-white/70 text-base sm:text-lg lg:w-[70%]">
             A selection of my favorite builds — from experimental playground
             ideas to fully deployed production apps. Every project represents a
             new challenge I tackled and a new skill I honed.
+          </p>
+          <p className="lg:hidden text-white/40 text-xs italic">
+            Tap a project card for details.
           </p>
 
           {/* Filter Tags */}
@@ -92,7 +95,7 @@ export default function ProjectsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true, amount: 0.1 }}
-                className="flex flex-col lg:flex-row items-start mx-auto lg:items-center gap-6 p-6 lg:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl hover:border-white/20 transition-all duration-300"
+                className="flex flex-col lg:flex-row items-start mx-auto lg:items-center gap-4 sm:gap-6 p-4 sm:p-6 lg:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-2xl hover:border-white/20 transition-all duration-300"
               >
                 {/* Project Card (visual) - clickable on mobile only */}
                 <div className="lg:w-1/3 w-full flex justify-center">

@@ -75,20 +75,20 @@ const Hero: React.FC = () => {
   const animateHeight = targetHeightPx ?? Math.round(window.innerHeight * 0.7);
 
   return (
-    <Container size="large" className="py-20 md:py-28">
-      <div className="flex flex-col lg:flex-row justify-center gap-20 lg:gap-0 items-center">
+    <Container size="large" className="py-12 md:py-28">
+      <div className="flex flex-col lg:flex-row justify-center gap-10 lg:gap-0 items-center">
         {/* Left Column – Text Content */}
         <div className="min-[1180px]:w-1/2 w-full flex flex-col gap-5">
-          <h1 className="text-6xl sm:text-8xl font-thin bg-linear-to-br from-rose-400 via-amber-400 to-lime-400 bg-clip-text text-transparent sm:max-[1180px]:text-center">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-thin bg-linear-to-br from-rose-400 via-amber-400 to-lime-400 bg-clip-text text-transparent sm:max-[1180px]:text-center text-balance">
             Hi,
-            <span className="text-4xl sm:text-5xl text-white/80"> this is</span>
+            <span className="text-3xl sm:text-4xl md:text-5xl text-white/80"> this is</span>
           </h1>
 
           {/* Mobile image (hidden on desktop) */}
-          <div className="hidden w-full h-[400px] relative sm:max-[1180px]:flex items-center justify-center my-15 lg:mb-25">
+          <div className="lg:hidden w-full h-[300px] sm:h-[400px] relative flex items-center justify-center my-8">
             <MyImage />
           </div>
-          <div className="min-sm:hidden w-full h-[300px]">
+          <div className="sm:hidden w-full h-[300px]">
             <img
               src={profilePic.src}
               className="w-full h-full rounded-2xl object-cover object-[50%_25%] shadow-2xl"
@@ -96,19 +96,19 @@ const Hero: React.FC = () => {
             />
           </div>
 
-          <h1 className="text-[55px] min-[500px]:text-[60px] min-lg:max-[1180px]:text-[70px] leading-[1.12em] font-thin text-white">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.12em] font-thin text-white text-balance">
             Oderinde Michael
           </h1>
 
           <div className="flex flex-col gap-2">
-            <p className="max-md:w-[90%] min-lg:max-[1180px]:w-[95%] font-light text-white/75 sm:text-xl">
+            <p className="md:w-[90%] lg:w-[95%] font-light text-white/75 text-base sm:text-lg md:text-xl">
               I'm all about creating scalable, smooth, dynamic web experiences
               that feel effortless to use. Whether it's the backend logic or the
               frontend design, I enjoy bringing ideas to life and making the web
               a better place—one project at a time!
             </p>
 
-            <div className="flex gap-4 mt-6 flex-wrap items-center">
+            <div className="flex gap-3 sm:gap-4 mt-6 flex-wrap items-center">
               <Button
                 ref={projectsButtonRef}
                 size="lg"
@@ -116,7 +116,7 @@ const Hero: React.FC = () => {
                 onClick={() =>
                   handleOpen("featured-projects", projectsButtonRef)
                 }
-                className="group"
+                className="group min-h-[44px]"
               >
                 View My Works
               </Button>
@@ -126,6 +126,7 @@ const Hero: React.FC = () => {
                 size="lg"
                 variant="outline"
                 onClick={() => handleOpen("resume", resumeButtonRef)}
+                className="min-h-[44px]"
               >
                 View My Resume
               </Button>
@@ -208,7 +209,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Desktop image */}
-        <div className="w-1/2 h-[400px] max-[1180px]:hidden relative flex justify-center items-center">
+        <div className="hidden lg:flex lg:w-1/2 h-[400px] relative justify-center items-center">
           <MyImage />
         </div>
       </div>

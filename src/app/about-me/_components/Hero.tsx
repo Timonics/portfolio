@@ -28,13 +28,13 @@ const Hero: React.FC = () => {
           <span className="text-4xl font-bold text-black">OM</span>
         )}
       </div>
-      <h1 className="font-display text-4xl md:text-6xl font-bold text-white">
+      <h1 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold text-white text-balance">
         About{" "}
         <span className="bg-linear-to-r from-rose-400 via-amber-400 to-lime-400 bg-clip-text text-transparent">
           Me
         </span>
       </h1>
-      <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+      <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto text-balance">
         I'm Michael Oderinde — a full‑stack engineer who builds systems that
         scale with intention. Here's a bit about my journey, skills, and what
         drives me.

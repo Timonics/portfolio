@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
             : "bg-transparent",
         )}
       >
-        <div className="py-5 px-4 md:px-8 lg:px-6 w-full flex items-center justify-between">
+        <div className="py-4 sm:py-5 px-4 sm:px-6 md:px-8 w-full flex items-center justify-between gap-2">
           <Logo />
 
           <div className="flex items-center gap-4">
@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 transition"
+              className="md:hidden p-2 min-h-[44px] min-w-[44px] rounded-full bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 transition"
               aria-label="Open menu"
             >
               <Menu size={22} />
@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu Panel */}
         <div
           className={cn(
-            "fixed left-1 top-2 w-[calc(100%-8px)] rounded-3xl bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl z-50 md:hidden transition-all duration-300 ease-out py-6 px-4 flex flex-col gap-6",
+            "fixed left-1 top-20 sm:top-2 w-[calc(100%-8px)] rounded-3xl bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl z-50 md:hidden transition-all duration-300 ease-out py-6 px-4 flex flex-col gap-6",
             mobileMenuOpen
               ? "translate-y-0 opacity-100"
               : "-translate-y-full opacity-0",

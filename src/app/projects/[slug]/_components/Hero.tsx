@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ project }) => {
         />
       </div>
 
-      <h1 className="text-4xl md:text-6xl font-bold mt-4 mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mt-4 mb-4 text-balance">
         <span
           className={`bg-clip-text text-transparent bg-gradient-to-r ${project.headerColor}`}
         >
@@ -39,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({ project }) => {
         Case Study
       </h1>
 
-      <p className="text-xl text-white/70 max-w-2xl mx-auto">
+      <p className="text-base sm:text-xl text-white/70 max-w-2xl mx-auto text-balance">
         {project.subtitle}
       </p>
 
@@ -58,11 +58,11 @@ const Hero: React.FC<HeroProps> = ({ project }) => {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-3 justify-center mt-6">
+      <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mt-6 max-w-full">
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="px-4 py-1.5 text-sm font-mono bg-white/10 rounded-full border border-white/20 text-white/80"
+            className="px-3 py-1 text-xs sm:text-sm font-mono bg-white/10 rounded-full border border-white/20 text-white/80"
           >
             {tag}
           </span>

@@ -9,7 +9,7 @@ import { Coffee, Code, Sparkles } from "lucide-react";
 
 const MyHubPreview: React.FC = () => {
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-12 md:py-32 overflow-hidden">
       <Container size="default">
         <div className="relative flex flex-col items-center justify-center gap-6 p-8 md:p-12 rounded-3xl bg-gradient-to-br from-rose-400/5 via-amber-400/5 to-lime-400/5 backdrop-blur-sm border border-white/10 shadow-2xl overflow-hidden">
           {/* Ambient floating orbs (replacing circles) */}
