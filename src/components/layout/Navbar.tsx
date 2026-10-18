@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -24,7 +24,8 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -32,6 +33,31 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
+
+  // Lock body scroll while the menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+    return undefined;
+  }, [mobileMenuOpen]);
+
+  // Close on Escape
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileMenuOpen]);
+
+  const openMenu = useCallback(() => setMobileMenuOpen(true), []);
+  const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
 
   const isHomePage = pathname === "/";
 
@@ -90,89 +116,109 @@ const Navbar: React.FC = () => {
               </Button>
             )}
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button — note the high z-index. The menu
+                panel and overlay are rendered as siblings of <header>
+                (not children) so they live in a separate stacking
+                context. This prevents the overlay from sitting on top
+                of this button when the menu is opening. */}
             <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 min-h-[44px] min-w-[44px] rounded-full bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 transition"
+              type="button"
+              onClick={openMenu}
               aria-label="Open menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu-panel"
+              className="md:hidden relative z-[60] p-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 transition"
             >
               <Menu size={22} />
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu Overlay */}
-        <div
-          className={cn(
-            "fixed inset-0 bg-black/70 backdrop-blur-sm z-50 md:hidden transition-all duration-300",
-            mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none",
-          )}
-          onClick={() => setMobileMenuOpen(false)}
-        />
-
-        {/* Mobile Menu Panel */}
-        <div
-          className={cn(
-            "fixed left-1 top-20 sm:top-2 w-[calc(100%-8px)] rounded-3xl bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl z-50 md:hidden transition-all duration-300 ease-out py-6 px-4 flex flex-col gap-6",
-            mobileMenuOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-full opacity-0",
-          )}
-        >
-          {/* Ambient glow behind panel */}
-          <div className="absolute inset-0 rounded-3xl bg-linear-to-b from-rose-400/10 via-amber-400/5 to-transparent blur-xl -z-10" />
-
-          <div className="flex items-center justify-between">
-            <Logo />
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
-              aria-label="Close menu"
-            >
-              <X size={20} className="text-white" />
-            </button>
-          </div>
-
-          <nav className="flex flex-col gap-3 items-center font-sans">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => window.scrollTo({ behavior: "smooth", top: 0 })}
-                className={cn(
-                  "w-full text-center py-3 px-4 rounded-full text-base font-medium transition-all duration-300",
-                  pathname === item.href
-                    ? "bg-white/15 text-white backdrop-blur-sm border border-white/30"
-                    : "text-white/80 hover:text-white hover:bg-white/10",
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-
-          {pathname !== "/projects" && (
-            <Button
-              asChild
-              size="lg"
-              variant="default"
-              className="w-full mt-2 shadow-amber-400/20"
-            >
-              <Link
-                href="/projects"
-                onClick={() => window.scrollTo({ behavior: "smooth", top: 0 })}
-              >
-                Explore Projects
-              </Link>
-            </Button>
-          )}
-
-          {/* Close hint */}
-          <p className="text-center text-white/30 text-xs mt-2">
-            Tap outside to close
-          </p>
-        </div>
       </header>
+
+      {/* Mobile menu lives OUTSIDE the header so its stacking context
+          is independent of the header's z-40 context. This keeps the
+          menu button clickable (the overlay never sits on top of the
+          button on the same z-index plane). */}
+      <div
+        id="mobile-menu-overlay"
+        aria-hidden="true"
+        onClick={closeMenu}
+        className={cn(
+          "fixed inset-0 bg-black/70 backdrop-blur-sm z-[55] md:hidden transition-opacity duration-300",
+          mobileMenuOpen
+            ? "opacity-100"
+            : "opacity-0 pointer-events-none",
+        )}
+      />
+
+      <div
+        id="mobile-menu-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation menu"
+        className={cn(
+          "fixed left-1 right-1 top-20 rounded-3xl bg-black/90 backdrop-blur-2xl border border-white/20 shadow-2xl z-[55] md:hidden transition-all duration-300 ease-out py-6 px-4 flex flex-col gap-6 max-h-[calc(100vh-6rem)] overflow-y-auto",
+          mobileMenuOpen
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0 pointer-events-none",
+        )}
+      >
+        <div className="flex items-center justify-between">
+          <Logo />
+          <button
+            type="button"
+            onClick={closeMenu}
+            aria-label="Close menu"
+            className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition"
+          >
+            <X size={20} className="text-white" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-3 items-center font-sans">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => {
+                closeMenu();
+                window.scrollTo({ behavior: "smooth", top: 0 });
+              }}
+              className={cn(
+                "w-full text-center py-3 px-4 min-h-[44px] rounded-full text-base font-medium transition-all duration-300",
+                pathname === item.href
+                  ? "bg-white/15 text-white backdrop-blur-sm border border-white/30"
+                  : "text-white/80 hover:text-white hover:bg-white/10",
+              )}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+
+        {pathname !== "/projects" && (
+          <Button
+            asChild
+            size="lg"
+            variant="default"
+            className="w-full mt-2 shadow-amber-400/20 min-h-[44px]"
+          >
+            <Link
+              href="/projects"
+              onClick={() => {
+                closeMenu();
+                window.scrollTo({ behavior: "smooth", top: 0 });
+              }}
+            >
+              Explore Projects
+            </Link>
+          </Button>
+        )}
+
+        <p className="text-center text-white/30 text-xs mt-2">
+          Tap outside to close
+        </p>
+      </div>
 
       {/* Spacer for fixed header on homepage */}
       {isHomePage && <div className="h-22 md:h-24" />}

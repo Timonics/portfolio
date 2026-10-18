@@ -8,7 +8,6 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import FeaturedProjects from "@/components/sections/landing/modal/FeaturedProjectsModal";
 import Resume from "@/components/sections/landing/modal/ResumeModal";
-import profilePic from "@/assets/jpg/Portfolio-pic1.jpg";
 
 const Hero: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -87,13 +86,6 @@ const Hero: React.FC = () => {
           {/* Mobile image (hidden on desktop) */}
           <div className="lg:hidden w-full h-[300px] sm:h-[400px] relative flex items-center justify-center my-8">
             <MyImage />
-          </div>
-          <div className="sm:hidden w-full h-[300px]">
-            <img
-              src={profilePic.src}
-              className="w-full h-full rounded-2xl object-cover object-[50%_25%] shadow-2xl"
-              alt="Oderinde Michael"
-            />
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.12em] font-thin text-white text-balance">
