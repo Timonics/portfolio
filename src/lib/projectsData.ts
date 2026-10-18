@@ -46,173 +46,6 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    name: "velto",
-    title: "Velto",
-    subtitle:
-      "Multi‑tenant SME platform with branded storefronts and social feed",
-    desc: "Empowers Nigerian SMEs to sell products or services via their own subdomain, discovered through a video feed and marketplace.",
-    tags: [
-      "NestJS",
-      "Prisma",
-      "PostgreSQL",
-      "Redis",
-      "Bull",
-      "TypeScript",
-      "Docker",
-      "Twilio",
-      "SendGrid",
-    ],
-    collaboration: "solo",
-    iconName: "FaServicestack",
-    textColor: "text-[#86198F]",
-    gradient: "linear-gradient(145deg, #C026D3b3, #e9eefa)",
-    backgroundGradient: "from-fuchsia-500 to-fuchsia-600",
-    shadowClassName: "shadow-lg",
-    headerColor: "from-fuchsia-500 via-fuchsia-300 to-fuchsia-300",
-    repo: "",
-    caseStudy: {
-      problemStatement: {
-        title: "Nigerian SMEs struggle to move beyond WhatsApp/Instagram",
-        description:
-          "Micro‑businesses lack a dedicated online presence with built‑in discovery, leading to lost sales and inefficient customer management.",
-        challenges: [
-          "No easy way to create a branded storefront",
-          "Customers discover shops only through manual sharing",
-          "No unified order/booking system",
-        ],
-      },
-      engineering: {
-        title: "Modular monolith with DDD‑lite",
-        description:
-          "Built a scalable backend using NestJS, Prisma, and PostgreSQL with subdomain resolution, cookie‑based JWT auth, and Bull queues for WhatsApp/email notifications.",
-        architecture: [
-          "Wildcard DNS (`*.velto.app`) maps to the same NestJS app",
-          "Tenant middleware extracts subdomain and attaches tenant to request",
-          "EventBus routes domain events to dedicated Bull queues (email, WhatsApp, analytics)",
-          "Prisma with `@prisma/adapter-pg` for connection pooling",
-        ],
-        decisions: [
-          {
-            title: "Custom error handling with error codes",
-            description:
-              "All errors return a structured JSON with a unique code (e.g., `AUTH_100`) for frontend mapping.",
-          },
-          {
-            title: "Explicit serializers instead of class‑transformer",
-            description:
-              "Prevents accidental password/refreshToken leaks and makes response shaping clear.",
-          },
-          {
-            title: "Separate queues per side‑effect",
-            description:
-              "Email, WhatsApp, and analytics queues can scale independently and have different retry policies.",
-          },
-        ],
-      },
-      designUX: {
-        title: "Gen‑Z focused discovery feed",
-        description:
-          "Customers see video/image posts from followed tenants and trending content, then click through to a branded subdomain storefront.",
-        highlights: [
-          "Posts with likes, comments, and shares",
-          "Follow/unfollow tenants",
-          "Marketplace filtering by category, location, and business type",
-        ],
-      },
-      nextSteps: {
-        title: "Planned enhancements",
-        description:
-          "Add Paystack integration, advanced analytics dashboard, and push notifications.",
-        items: [
-          "Payment gateway (Paystack)",
-          "Real‑time order tracking",
-          "Vendor analytics dashboard",
-          "Mobile app with Expo",
-        ],
-      },
-    },
-  },
-  {
-    name: "chatbin",
-    title: "ChatBin",
-    subtitle: "Self-destructing secret sharing",
-    desc: "A secure, self-destructing secret sharing service for sensitive information.",
-    tags: ["NestJS", "BullMQ", "Prisma"],
-    collaboration: "solo",
-    iconName: "Lock", // renamed from icon
-    textColor: "text-[#9A3412]",
-    gradient: "linear-gradient(145deg, #EA580Cb3, #e9eefa)",
-    backgroundGradient: "from-orange-500 to-orange-600",
-    shadowClassName: "shadow-lg shadow-orange-400/30",
-    headerColor: "from-orange-500 via-orange-300 to-orange-200", // default, since not specified
-    live: undefined, // no live URL provided
-    repo: "https://github.com/Timonics/chat-bin",
-    caseStudy: {
-      problemStatement: {
-        title:
-          "Give users a privacy-first way to share sensitive strings (passwords, tokens) that self-destruct after access or expiry.",
-        description:
-          "People frequently share secrets via chat or email which persists indefinitely. ChatBin provides short-lived links with single-read semantics and background deletion to reduce exposure risk.",
-        challenges: [
-          "Ensuring true single-read semantics (no replay after first view)",
-          "Preventing link scraping and abuse with rate-limiting and CAPTCHA",
-          "Secure encryption at rest without compromising performance",
-        ],
-      },
-      researchPlanning: {
-        title: "Research & Threat Modeling",
-        description:
-          "Benchmarked existing secret-sharing services and defined threat model.",
-        findings: [
-          "Benchmarked Privnote and OneTimeSecret for UX and threat model",
-          "Defined threat model: link scraping, replay attacks, and server compromise",
-          "Designed expiry options: one-read, timed expiry, and manual revoke",
-        ],
-      },
-      engineering: {
-        title: "Backend Architecture",
-        description:
-          "Built with NestJS, Prisma, BullMQ for reliable secret disposal and AES encryption.",
-        architecture: [
-          "NestJS API with Prisma + Postgres for secure data models",
-          "AES encryption at rest for secret payloads, keys managed separately",
-          "One-time token generation and single-read retrieval endpoint",
-          "BullMQ background jobs to auto-delete expired secrets and rotate cleanup",
-          "Rate-limiting, IP throttling and optional CAPTCHA for abuse protection",
-          "Deployment: Render/DigitalOcean + managed Postgres/Redis, Cloudflare DDoS protection",
-        ],
-        decisions: [
-          {
-            title: "BullMQ over cron jobs",
-            description:
-              "Ensures reliable deletion even after server restarts and provides retry semantics.",
-          },
-          {
-            title: "AES encryption at rest",
-            description:
-              "Secrets are encrypted before database storage; keys are stored separately to mitigate server compromise risks.",
-          },
-          {
-            title: "Single-read token invalidation",
-            description:
-              "Tokens are invalidated immediately after retrieval, preventing replay attacks via the same link.",
-          },
-        ],
-      },
-      nextSteps: {
-        title: "Future Enhancements",
-        description:
-          "Planned improvements to expand security, usability, and enterprise features.",
-        items: [
-          "Add optional end-to-end (client-side) encryption",
-          "Introduce enterprise features: audit logs and SSO",
-          "Add link PIN protection and custom expiration policies",
-        ],
-      },
-    },
-  },
-  // },
-  {
     name: "charon",
     title: "Charon",
     subtitle:
@@ -429,4 +262,171 @@ export const PROJECTS: Project[] = [
     },
   },
 
+  {
+    name: "velto",
+    title: "Velto",
+    subtitle:
+      "Multi‑tenant SME platform with branded storefronts and social feed",
+    desc: "Empowers Nigerian SMEs to sell products or services via their own subdomain, discovered through a video feed and marketplace.",
+    tags: [
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "Redis",
+      "Bull",
+      "TypeScript",
+      "Docker",
+      "Twilio",
+      "SendGrid",
+    ],
+    collaboration: "solo",
+    iconName: "FaServicestack",
+    textColor: "text-[#86198F]",
+    gradient: "linear-gradient(145deg, #C026D3b3, #e9eefa)",
+    backgroundGradient: "from-fuchsia-500 to-fuchsia-600",
+    shadowClassName: "shadow-lg",
+    headerColor: "from-fuchsia-500 via-fuchsia-300 to-fuchsia-300",
+    repo: "",
+    caseStudy: {
+      problemStatement: {
+        title: "Nigerian SMEs struggle to move beyond WhatsApp/Instagram",
+        description:
+          "Micro‑businesses lack a dedicated online presence with built‑in discovery, leading to lost sales and inefficient customer management.",
+        challenges: [
+          "No easy way to create a branded storefront",
+          "Customers discover shops only through manual sharing",
+          "No unified order/booking system",
+        ],
+      },
+      engineering: {
+        title: "Modular monolith with DDD‑lite",
+        description:
+          "Built a scalable backend using NestJS, Prisma, and PostgreSQL with subdomain resolution, cookie‑based JWT auth, and Bull queues for WhatsApp/email notifications.",
+        architecture: [
+          "Wildcard DNS (`*.velto.app`) maps to the same NestJS app",
+          "Tenant middleware extracts subdomain and attaches tenant to request",
+          "EventBus routes domain events to dedicated Bull queues (email, WhatsApp, analytics)",
+          "Prisma with `@prisma/adapter-pg` for connection pooling",
+        ],
+        decisions: [
+          {
+            title: "Custom error handling with error codes",
+            description:
+              "All errors return a structured JSON with a unique code (e.g., `AUTH_100`) for frontend mapping.",
+          },
+          {
+            title: "Explicit serializers instead of class‑transformer",
+            description:
+              "Prevents accidental password/refreshToken leaks and makes response shaping clear.",
+          },
+          {
+            title: "Separate queues per side‑effect",
+            description:
+              "Email, WhatsApp, and analytics queues can scale independently and have different retry policies.",
+          },
+        ],
+      },
+      designUX: {
+        title: "Gen‑Z focused discovery feed",
+        description:
+          "Customers see video/image posts from followed tenants and trending content, then click through to a branded subdomain storefront.",
+        highlights: [
+          "Posts with likes, comments, and shares",
+          "Follow/unfollow tenants",
+          "Marketplace filtering by category, location, and business type",
+        ],
+      },
+      nextSteps: {
+        title: "Planned enhancements",
+        description:
+          "Add Paystack integration, advanced analytics dashboard, and push notifications.",
+        items: [
+          "Payment gateway (Paystack)",
+          "Real‑time order tracking",
+          "Vendor analytics dashboard",
+          "Mobile app with Expo",
+        ],
+      },
+    },
+  },
+  {
+    name: "chatbin",
+    title: "ChatBin",
+    subtitle: "Self-destructing secret sharing",
+    desc: "A secure, self-destructing secret sharing service for sensitive information.",
+    tags: ["NestJS", "BullMQ", "Prisma"],
+    collaboration: "solo",
+    iconName: "Lock", // renamed from icon
+    textColor: "text-[#9A3412]",
+    gradient: "linear-gradient(145deg, #EA580Cb3, #e9eefa)",
+    backgroundGradient: "from-orange-500 to-orange-600",
+    shadowClassName: "shadow-lg shadow-orange-400/30",
+    headerColor: "from-orange-500 via-orange-300 to-orange-200", // default, since not specified
+    live: undefined, // no live URL provided
+    repo: "https://github.com/Timonics/chat-bin",
+    caseStudy: {
+      problemStatement: {
+        title:
+          "Give users a privacy-first way to share sensitive strings (passwords, tokens) that self-destruct after access or expiry.",
+        description:
+          "People frequently share secrets via chat or email which persists indefinitely. ChatBin provides short-lived links with single-read semantics and background deletion to reduce exposure risk.",
+        challenges: [
+          "Ensuring true single-read semantics (no replay after first view)",
+          "Preventing link scraping and abuse with rate-limiting and CAPTCHA",
+          "Secure encryption at rest without compromising performance",
+        ],
+      },
+      researchPlanning: {
+        title: "Research & Threat Modeling",
+        description:
+          "Benchmarked existing secret-sharing services and defined threat model.",
+        findings: [
+          "Benchmarked Privnote and OneTimeSecret for UX and threat model",
+          "Defined threat model: link scraping, replay attacks, and server compromise",
+          "Designed expiry options: one-read, timed expiry, and manual revoke",
+        ],
+      },
+      engineering: {
+        title: "Backend Architecture",
+        description:
+          "Built with NestJS, Prisma, BullMQ for reliable secret disposal and AES encryption.",
+        architecture: [
+          "NestJS API with Prisma + Postgres for secure data models",
+          "AES encryption at rest for secret payloads, keys managed separately",
+          "One-time token generation and single-read retrieval endpoint",
+          "BullMQ background jobs to auto-delete expired secrets and rotate cleanup",
+          "Rate-limiting, IP throttling and optional CAPTCHA for abuse protection",
+          "Deployment: Render/DigitalOcean + managed Postgres/Redis, Cloudflare DDoS protection",
+        ],
+        decisions: [
+          {
+            title: "BullMQ over cron jobs",
+            description:
+              "Ensures reliable deletion even after server restarts and provides retry semantics.",
+          },
+          {
+            title: "AES encryption at rest",
+            description:
+              "Secrets are encrypted before database storage; keys are stored separately to mitigate server compromise risks.",
+          },
+          {
+            title: "Single-read token invalidation",
+            description:
+              "Tokens are invalidated immediately after retrieval, preventing replay attacks via the same link.",
+          },
+        ],
+      },
+      nextSteps: {
+        title: "Future Enhancements",
+        description:
+          "Planned improvements to expand security, usability, and enterprise features.",
+        items: [
+          "Add optional end-to-end (client-side) encryption",
+          "Introduce enterprise features: audit logs and SSO",
+          "Add link PIN protection and custom expiration policies",
+        ],
+      },
+    },
+  },
+  // },
 ];
